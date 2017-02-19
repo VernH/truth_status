@@ -1,0 +1,92 @@
+<section>
+  <div class="page-header">
+    <h1 id="forum-post-title" ng-bind="vm.forum.name"></h1>
+    <br />
+     <h3 id="forum-post-content" ng-bind="vm.forum.forumPost"></h3>
+  </div>
+
+  <style>
+  #forum-post-title{
+    text-align: center;
+    border-style: double;
+    border: solid;
+    border-color: red;
+    background-color: black; 
+    color: white;
+    padding: 10px, 10px, 10px, 10px;
+    margin: 10px, 10px, 10px, 10px;
+  }
+  #forum-post-content{
+    border-style: double;
+    border: solid;
+    border-color: red;
+    background-color: black; 
+    color: white;
+    padding: 10px, 10px, 10px, 10px;
+    margin: 10px, 10px, 10px, 10px;
+  }
+
+  .text-muted{
+    border-style: double;
+    border: solid;
+    border-color: red;
+    background-color: black;
+    background-opacity: ; 
+    color: white;
+    padding: 10px, 10px, 10px, 10px;
+    margin: 10px, 10px, 10px, 10px;
+    
+
+  }
+
+  </style>
+  <div class="pull-right"
+       ng-show="vm.forum.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       ui-sref="forums.edit({ forumId: vm.forum._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.forum.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="vm.forum.user"
+            ng-bind="vm.forum.user.displayName"></span>
+      <span ng-if="!vm.forum.user">Deleted User</span>
+<!--       <img ng-if="vm.forum.user" ng-src="vm.forum.profileImageURL" />
+ -->    </em>
+  </small>
+  <p class="lead" ng-bind="vm.forum.content"></p>
+</section>
+
+<!-- <script type="text/javascript">
+var likes = 0;
+function like() {
+  document.getElementById("show").innerHTML=likes;
+  likes=likes+1;
+}
+</script>
+
+
+<button ng-class="{'forumLikeButton' : photo.liked}" ng-click="like(forumPost, this) id="button" onclick="like()">Like</button>
+<style>
+#button {
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 15px, 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+<a type="text" id="show"></a> -->
+

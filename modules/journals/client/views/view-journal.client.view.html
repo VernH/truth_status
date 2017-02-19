@@ -1,0 +1,56 @@
+<section>
+  <div id="journal-post-title" class="page-header">
+    <h1  ng-bind="vm.journal.name"></h1>
+    <h3 id="journal-post-content" ng-bind="vm.journal.journalEntry"></h3>
+  </div>
+
+<style>
+  #journal-post-title{
+    text-align: center;
+    border-style: double;
+    border: solid;
+    border-color: red;
+    background-color: black; 
+    color: white;
+    padding: 10px, 10px, 10px, 10px;
+    margin: 10px, 10px, 10px, 10px;
+  }
+
+  #journal-post-content {
+    text-align: left;
+  }
+
+  .text-muted{
+    text-align: center;
+    border-style: double;
+    border: solid;
+    border-color: red;
+    background-color: black; 
+    color: white;
+    padding: 10px, 10px, 10px, 10px;
+    margin: 10px, 10px, 10px, 10px;
+  }
+  </style>
+
+  <div class="pull-right"
+       ng-show="vm.journal.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       ui-sref="journals.edit({ journalId: vm.journal._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.journal.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="vm.journal.user"
+            ng-bind="vm.journal.user.displayName"></span>
+      <span ng-if="!vm.journal.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="vm.journal.content"></p>
+</section>

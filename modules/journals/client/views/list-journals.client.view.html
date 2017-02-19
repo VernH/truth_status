@@ -1,0 +1,37 @@
+<section>
+  <div class="page-header">
+    <h1>Journals</h1>
+  </div>
+
+  <style>
+  .page-header{
+    border-style: double;
+    border: solid;
+    border-color: red;
+    background-color: black; 
+    color: white;
+    padding: 10px, 10px, 10px, 10px;
+    margin: 10px, 10px, 10px, 10px;
+  }
+
+  </style>
+
+  <div class="list-group">
+    <a ng-repeat="journal in vm.journals"
+      ng-if="vm.user._id == journal.user._id"
+       ui-sref="journals.view({ journalId: journal._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="journal.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="journal.user" ng-bind="journal.user.displayName"></span>
+        <span ng-if="!journal.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="journal.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.journals.$resolved && !vm.journals.length">
+    No Journals yet, why don't you <a ui-sref="journals.create">create one</a>?
+  </div>
+</section>

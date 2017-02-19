@@ -1,0 +1,36 @@
+<section>
+  <div class="page-header">
+    <h1>Forums</h1>
+  </div>
+
+<style>
+  .page-header{
+    border-style: double;
+    border: solid;
+    border-color: red;
+    background-color: black; 
+    color: white;
+    padding: 10px, 10px, 10px, 10px;
+    margin: 10px, 10px, 10px, 10px;  
+  }
+
+</style>
+
+  <div class="list-group">
+    <a ng-repeat="forum in vm.forums"
+       ui-sref="forums.view({ forumId: forum._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="forum.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="forum.user" ng-bind="forum.user.displayName"></span>
+        <span ng-if="!forum.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="forum.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.forums.$resolved && !vm.forums.length">
+    No Forums yet, why don't you <a ui-sref="forums.create">create one</a>?
+  </div>
+</section>
